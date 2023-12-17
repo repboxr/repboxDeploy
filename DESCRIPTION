@@ -1,0 +1,11 @@
+Package: repboxDeploy
+Type: Package
+Title: Helper functions to deploy analysed repbox projects in specific forms
+Version: 0.1.0
+Author: Sebastian Kranz
+Maintainer: Sebastian Kranz <sebastian.kranz@uni-ulm.de>
+Description: Currently helper functions to deploy a repbox project as a public example
+License: GPL >= 3.0
+Depends: restorepoint, repboxUtils, stringi, repboxDB, data.table
+Encoding: UTF-8
+LazyData: true
