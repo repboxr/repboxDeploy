@@ -40,6 +40,14 @@ repbox_example_readme = function(project.dir, opts, art=NULL) {
     art_text = "To due copyright, we removed parcels that contain original text from the article."
   }
 
+  reports_url_txt = ""
+  if(!is.null(opts$report_url)) {
+    reports.dir = file.path(project.dir,"reports")
+    pages = list.files(reports.dir, "*.html", full.names = FALSE)
+    if (length(pages)>0) {
+      reports_url_txt = paste0("\nGithub does typically not allow to see HTML pages. You can see the reports under the following links:\n\n", paste0("-  ",opts$report_url,"/",artid,"/",pages, collapse="\n"),"\n")
+    }
+  }
 
   txt = paste0("# Repbox Example Project ", artid, "
 
@@ -55,7 +63,10 @@ The replication package can be found here:\n ", art$data_url, "
 
 ## Content
 
-You find the generated HTML reports in the `reports` folder. The generated data parcels in the `parcels` folder. The `parcels/rds` contains the parcels in R's Rds data type and the `csv` folder shows the first lines of all tables as csv files.
+You find the generated HTML reports in the `reports` folder.
+", reports_url_txt, "
+
+The generated data parcels are in the `parcels` folder. The `parcels/rds` contains the parcels in R's Rds data type and the `parcels/csv` folder shows the first lines of all tables as csv files. The `parcels/table_spec/` folder shows the YAML table specifications.
 
 ", art_text, "
 
@@ -63,3 +74,5 @@ We did not include the original supplement in order to save space.
 ")
   txt
 }
+
+

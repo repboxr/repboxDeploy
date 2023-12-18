@@ -7,7 +7,7 @@ example = function() {
 
   project.dir = "C:/libraries/repbox/projects_reg/aejapp_9_4_5"
   sup_url = "https://www.openicpsr.org/openicpsr/project/113670/version/V1/view"
-  opts = repbox_example_options(sup_url = sup_url,sup_license = "Creative Commons Attribution 4.0 and BSD", csv_max_rows = 10)
+  opts = repbox_example_options(sup_url = sup_url,sup_license = "Creative Commons Attribution 4.0 and BSD", csv_max_rows = 10, report_url = "https://econ.mathematik.uni-ulm.de/repbox-example")
 
 
   ex.dir = repbox_example_project(project.dir,"C:/libraries/repbox/projects_ex", opts=opts)
@@ -27,6 +27,8 @@ repbox_example_project = function(project.dir, parent.dir, opts=repbox_example_o
     dir.create(ex.dir,recursive = TRUE)
   }
 
+  repbox_example_copy_table_specs(project.dir, ex.dir)
+
   # Copy some files
   files = get_repbox_example_copy_files(project.dir, opts)
   copy_files_to_repbox_example(files, project.dir, ex.dir)
@@ -44,6 +46,15 @@ repbox_example_project = function(project.dir, parent.dir, opts=repbox_example_o
 
   ex.dir
 
+}
+
+repbox_example_copy_table_specs = function(project.dir, ex.dir) {
+  source_files = repboxDB::regdb_spec_files()
+
+  spec_dir = file.path(ex.dir, "parcels/table_spec")
+  if (!dir.exists(spec_dir)) dir.create(spec_dir)
+  dest_files = file.path(spec_dir, basename(source_files))
+  file.copy(source_files, dest_files)
 }
 
 copy_files_to_repbox_example = function(files, project.dir, ex.dir) {
@@ -128,12 +139,13 @@ endsWithAny = function(x, prefix) {
   res
 }
 
-repbox_example_options = function(keep_art = !is.null(art_license), art_license=NULL, sup_license=NULL, sup_url = NULL, csv_max_rows=10) {
+repbox_example_options = function(keep_art = !is.null(art_license), art_license=NULL, sup_license=NULL, sup_url = NULL, csv_max_rows=10, report_url = NULL) {
   list(
     keep_art = keep_art,
     art_license = art_license,
     sup_license = sup_license,
     sup_url = sup_url,
-    csv_max_rows = csv_max_rows
+    csv_max_rows = csv_max_rows,
+    report_url = report_url
   )
 }
