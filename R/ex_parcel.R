@@ -1,17 +1,17 @@
 example = function() {
-  project.dir = "C:/libraries/repbox/projects_reg/aejmic_7_2_5"
+  project_dir = "C:/libraries/repbox/projects_reg/aejmic_7_2_5"
   sup_url = "https://www.openicpsr.org/openicpsr/project/114322/version/V1/view"
   opts = repbox_example_options(sup_url = sup_url)
 
-  repbox_example_project(project.dir,"C:/libraries/repbox/projects_ex", opts=opts)
+  repbox_example_project(project_dir,"C:/libraries/repbox/projects_ex", opts=opts)
 
 }
 
 
 
-repbox_example_copy_parcel_rds = function(project.dir, ex.dir, opts) {
+repbox_example_copy_parcel_rds = function(project_dir, ex.dir, opts) {
   restore.point("repbox_example_create_parcel_csv")
-  parcel_df = repboxDB::regdb_list_parcels(project.dir)
+  parcel_df = repboxDB::regdb_list_parcels(project_dir)
 
 
   source_files = parcel_df$path
@@ -22,9 +22,9 @@ repbox_example_copy_parcel_rds = function(project.dir, ex.dir, opts) {
 }
 
 
-repbox_example_create_parcel_csv = function(project.dir, ex.dir, opts) {
+repbox_example_create_parcel_csv = function(project_dir, ex.dir, opts) {
   restore.point("repbox_example_create_parcel_csv")
-  parcel_df = repboxDB::regdb_list_parcels(project.dir)
+  parcel_df = repboxDB::regdb_list_parcels(project_dir)
 
   csv.dir = file.path(ex.dir, "parcels/csv")
   if (!dir.exists(csv.dir)) dir.create(csv.dir)

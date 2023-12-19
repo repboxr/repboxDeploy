@@ -1,19 +1,19 @@
 # Generate a readme for a repbox example
 
 example = function() {
-  project.dir = "C:/libraries/repbox/projects_reg/aejmic_7_2_5"
+  project_dir = "C:/libraries/repbox/projects_reg/aejmic_7_2_5"
   sup_url = "https://www.openicpsr.org/openicpsr/project/114322/version/V1/view"
   opts = repbox_example_options(sup_url = sup_url)
-  repbox_example_readme(project.dir, opts)
+  repbox_example_readme(project_dir, opts)
 
 }
 
-repbox_example_readme = function(project.dir, opts, art=NULL) {
+repbox_example_readme = function(project_dir, opts, art=NULL) {
   restore.point("repbox_example_readme")
-  artid = basename(project.dir)
+  artid = basename(project_dir)
 
   if (is.null(art)) {
-    art = readRDS(file.path(project.dir,"art","regdb/art.Rds"))$art
+    art = readRDS(file.path(project_dir,"art","regdb/art.Rds"))$art
   }
 
   if (!is.null(opts$sup_url)) {
@@ -42,7 +42,7 @@ repbox_example_readme = function(project.dir, opts, art=NULL) {
 
   reports_url_txt = ""
   if(!is.null(opts$report_url)) {
-    reports.dir = file.path(project.dir,"reports")
+    reports.dir = file.path(project_dir,"reports")
     pages = list.files(reports.dir, "*.html", full.names = FALSE)
     if (length(pages)>0) {
       reports_url_txt = paste0("\nGithub does typically not allow to see HTML pages. You can see the reports under the following links:\n\n", paste0("-  ",opts$report_url,"/",artid,"/",pages, collapse="\n"),"\n")
