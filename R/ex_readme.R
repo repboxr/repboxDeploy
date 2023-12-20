@@ -13,7 +13,7 @@ repbox_example_readme = function(project_dir, opts, art=NULL) {
   artid = basename(project_dir)
 
   if (is.null(art)) {
-    art = readRDS(file.path(project_dir,"art","regdb/art.Rds"))$art
+    art = readRDS(file.path(project_dir,"art","repdb/art.Rds"))$art
   }
 
   if (!is.null(opts$sup_url)) {

@@ -49,7 +49,7 @@ repbox_example_project = function(project_dir, parent.dir, opts=repbox_example_o
 }
 
 repbox_example_copy_table_specs = function(project_dir, ex.dir) {
-  source_files = repboxDB::regdb_spec_files()
+  source_files = repboxDB::repdb_spec_files()
 
   spec_dir = file.path(ex.dir, "parcels/table_spec")
   if (!dir.exists(spec_dir)) dir.create(spec_dir)
@@ -103,19 +103,19 @@ get_repbox_example_copy_files = function(project_dir, opts=repbox_example_option
   # example since internal structure might change
 
   ignore_prefix = c("steps","repbox/stata","repbox/r","mod","metareg","art/art_tab_raw","meta")
-  keep_prefix = c("art/regdb","metareg/base/regdb","repbox/regdb","art/pdf","art/html")
+  keep_prefix = c("art/repdb","metareg/base/repdb","repbox/repdb","art/pdf","art/html")
   ignore = startsWithAny(files, ignore_prefix) & !startsWithAny(files, keep_prefix)
   files = files[!ignore]
 
   # Remove article information
   # (should be done unless there is an open license)
   if (!opts$keep_art) {
-    keep_prefix = c("art/regdb")
+    keep_prefix = c("art/repdb")
     ignore_prefix = c("art")
     ignore = startsWithAny(files, ignore_prefix) & !startsWithAny(files, keep_prefix)
     files = files[!ignore]
 
-    ignore_prefix = c("art/regdb/art_tab_source.rds")
+    ignore_prefix = c("art/repdb/art_tab_source.rds")
     ignore = startsWithAny(files, ignore_prefix)
     files = files[!ignore]
   }

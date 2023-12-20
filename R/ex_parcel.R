@@ -11,7 +11,7 @@ example = function() {
 
 repbox_example_copy_parcel_rds = function(project_dir, ex.dir, opts) {
   restore.point("repbox_example_create_parcel_csv")
-  parcel_df = repboxDB::regdb_list_parcels(project_dir)
+  parcel_df = repboxDB::repdb_list_parcels(project_dir)
 
 
   source_files = parcel_df$path
@@ -24,7 +24,7 @@ repbox_example_copy_parcel_rds = function(project_dir, ex.dir, opts) {
 
 repbox_example_create_parcel_csv = function(project_dir, ex.dir, opts) {
   restore.point("repbox_example_create_parcel_csv")
-  parcel_df = repboxDB::regdb_list_parcels(project_dir)
+  parcel_df = repboxDB::repdb_list_parcels(project_dir)
 
   csv.dir = file.path(ex.dir, "parcels/csv")
   if (!dir.exists(csv.dir)) dir.create(csv.dir)
